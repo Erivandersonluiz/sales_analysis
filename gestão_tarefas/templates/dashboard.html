@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar__brand"><h1>Dashboard</h1></div>
+        <a href="/" class="btn-ghost">Voltar</a>
+    </nav>
+
+    <main class="container">
+        <div class="dashboard-grid">
+            <div class="task-card">
+                <h3>Total</h3>
+                <p class="stat-number">{{ total }}</p>
+            </div>
+            <div class="task-card status-done">
+                <h3>Concluídas</h3>
+                <p class="stat-number">{{ concluidas }}</p>
+            </div>
+        </div>
+
+        <div class="task-card progress-section">
+            <h3>Progresso Geral: {{ porcentagem }}%</h3>
+            <div class="progress-bar-bg">
+               <div class="progress-bar-fill" style="--progresso: {{ porcentagem|safe }}%;"></div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

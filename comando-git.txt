@@ -1,0 +1,8 @@
+Conectar-se ao GitHub ou a outros controles remotos: para compartilhar seu repositório na nuvem (GitHub, GitLab, Bitbucket), você precisa adicionar um controle remoto. Isso geralmente é feito uma vez por projeto: depois de criar o repositório local, vá para o terminal e digite os comandos tradicionais do Git:
+
+
+git remote add origin <URL-from-your-repo-git-remote>.
+
+git branch -M main
+
+git push -u origin main

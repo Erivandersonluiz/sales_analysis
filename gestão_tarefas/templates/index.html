@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Minhas Tarefas</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar__brand">
+            <h1>Gerenciador de tarefas</h1>
+        </div>
+        <a href="/dashboard" class="btn-ghost">Ver Evolução</a>
+    </nav>
+
+    <main class="container">
+        <section class="task-form">
+            <form action="/adicionar" method="post" class="task-form__fields">
+                <input type="text" name="texto_tarefa" placeholder="Nova tarefa" required>
+                <button type="submit" class="btn-primary">Adicionar</button>
+            </form>
+        </section>
+
+        <div class="task-list">
+            {% for tarefa in tarefas %}
+            <div class="task-card {% if tarefa.feito %}task-card--concluida{% endif %}">
+                <div class="task-card__meta">
+                    <span>{{ tarefa.data_criacao }}</span>
+                </div>
+                
+                <div class="task-card__title">
+                    {% if tarefa.feito %}
+                        <s>{{ tarefa.texto }}</s>
+                    {% else %}
+                        {{ tarefa.texto }}
+                    {% endif %}
+                </div>
+
+                <div class="task-card__actions">
+                    {% if not tarefa.feito %}
+                        <a href="/completar/{{ tarefa.id }}" class="btn-complete">✓</a>
+                    {% endif %}
+                    <button class="btn-delete">✕</button>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </main>
+</body>
+</html>

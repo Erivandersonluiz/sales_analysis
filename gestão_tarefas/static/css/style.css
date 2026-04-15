@@ -1,0 +1,192 @@
+/* ── navbar ── */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 56px;
+  padding: 0 1.5rem;
+  background: #fff;
+  border-bottom: 1px solid #e5e7eb;
+}
+.navbar__brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+/* ── task card ── */
+.task-card {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 1rem 1.25rem;
+  border-left: 3px solid #e5e7eb;
+  transition: box-shadow 0.15s;
+}
+.task-card:hover { box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+.task-card--alta  { border-left-color: #e24b4a; }
+.task-card--media { border-left-color: #ef9f27; }
+.task-card--baixa { border-left-color: #639922; }
+.task-card--concluida {
+  opacity: 0.55;
+  background: #f9f9f9;
+}
+.task-card__title       { font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+.task-card__description { font-size: 13px; color: #6b7280; }
+.task-card__meta        { font-size: 11px; color: #9ca3af; display: flex; gap: 8px; margin-bottom: 6px; }
+.task-card__actions     { display: flex; gap: 6px; }
+
+/* ── badges de prioridade ── */
+.badge {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+.badge--alta    { background: #fcebeb; color: #a32d2d; }
+.badge--media   { background: #faeeda; color: #854f0b; }
+.badge--baixa   { background: #eaf3de; color: #3b6d11; }
+.badge--concluida { background: #f3f4f6; color: #6b7280; }
+
+/* ── botões de ação ── */
+.btn-edit, .btn-delete, .btn-complete {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  background: #f9fafb;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.12s;
+}
+.btn-edit:hover   { background: #eff6ff; border-color: #bfdbfe; }
+.btn-delete:hover { background: #fef2f2; border-color: #fecaca; }
+.btn-complete     { background: #f0fdf4; border-color: #bbf7d0; }
+.btn-complete:hover { background: #dcfce7; }
+
+/* ── formulário ── */
+.task-form {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 1.25rem;
+}
+.task-form__fields {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.task-form input,
+.task-form select,
+.task-form textarea {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: #f9fafb;
+  font-size: 14px;
+  color: #111827;
+  outline: none;
+  transition: border-color 0.15s;
+}
+.task-form input:focus,
+.task-form select:focus,
+.task-form textarea:focus { border-color: #7F77DD; }
+
+/* ── botões principais ── */
+.btn-primary {
+  height: 36px;
+  padding: 0 18px;
+  background: #7F77DD;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.btn-primary:hover { background: #6b63c9; }
+
+.btn-ghost {
+  height: 36px;
+  padding: 0 16px;
+  background: transparent;
+  color: #6b7280;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 13px;
+  cursor: pointer;
+}
+.btn-ghost:hover { background: #f3f4f6; }
+
+/* Adicione isso ao seu style.css para organizar a página */
+.container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+}
+
+.task-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+/* Garante que o texto da data fique discreto */
+.task-card__meta {
+    font-size: 0.75rem;
+    color: #7F77DD;
+    margin-bottom: 5px;
+}
+
+
+/* Adicione ao final do seu style.css */
+@media (max-width: 768px) {
+  div[style*="grid-template-columns"] {
+    grid-template-columns: 1fr !important; /* Vira lista no celular */
+  }
+}
+
+.task-card__meta {
+  display: flex;
+  justify-content: space-between;
+  font-weight: bold;
+  color: #7F77DD; /* Cor de destaque para a data/hora */
+}
+
+
+/* Adicione ao final do seu style.css */
+.progress-bar-bg {
+  width: 100%;
+  background-color: #e5e7eb; /* Cinza claro */
+  border-radius: 10px;
+  height: 12px;
+  margin-top: 10px;
+  overflow: hidden;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background-color: #7F77DD; /* O roxo do seu projeto */
+  transition: width 0.4s ease; /* Efeito de animação */
+}
+
+.stat-number {
+  font-size: 24px;
+  font-weight: bold;
+  color: #111827;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  background-color: #7F77DD;
+  /* Ela usa a variável --progresso, e se não houver valor, assume 0% */
+  width: var(--progresso, 0%); 
+  transition: width 0.4s ease;
+}

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard de vendas</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">
+</head>
+
+<body>
+    <header class="header-bar">
+        <div class="header-content">
+            <div>
+                <p class="eyebrow">Business Intelligence</p>
+                <h1>Dashboard de vendas</h1>
+            </div>
+        </div>
+    </header>
+    <main class="dashboard-grid">
+        <section class="card summary-card">
+            <div class="card-header">
+                <h2>Visão geral das vendas</h2>
+            </div>
+            <div class="card-body">
+                <div class="summary-metrics">
+                    <div class="metric-card">
+                        <span class="metric-label">Total de vendas</span>
+                        <strong class="metric-value">R$ {{ "%.2f"|format(total_vendas) }}</strong>
+                    </div>
+                    <div class="metric-card">
+                        <span class="metric-label">Mais vendido</span>
+                        <strong class="metric-value">{{ mais_vendido }}</strong>
+                        <span class="metric-note">{{ quantidade_mais_vendido }} unidades</span>
+                    </div>
+                    <div class="metric-card">
+                        <span class="metric-label">Maior receita</span>
+                        <strong class="metric-value">{{ maior_receita }}</strong>
+                        <span class="metric-note">R$ {{ "%.2f"|format(valor_maior_receita) }}</span>
+                    </div>
+                </div>
+                <div class="list-group">
+                    <h3>Receita por produto</h3>
+                    <ul>
+                        {% for produto, vendas in vendas_por_produto.items() %}
+                        <li>{{ produto }}: R$ {{ "%.2f"|format(vendas) }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <section class="card chart-card">
+            <div class="card-header">
+                <h2>Receita por produto</h2>
+            </div>
+            <div class="card-body">
+                <canvas id="salesChart"></canvas>
+            </div>
+        </section>
+        <section class="card chart-card">
+            <div class="card-header">
+                <h2>Vendas por mês</h2>
+            </div>
+            <div class="card-body">
+                <canvas id="monthlyChart"></canvas>
+            </div>
+        </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        const labelsProdutoData = {{ labels_produto|tojson }};
+        const valuesProdutoData = {{ values_produto|tojson }};
+        const labelsMensaisData = {{ meses|tojson }};
+        const valuesMensaisData = {{ valores_mes|tojson }};
+    </script>
+    <script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+</body>
+</html>
